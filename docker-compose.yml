@@ -1,0 +1,32 @@
+version: '2'
+
+services:
+  moodle:
+    container_name: h5p-moodle-3.2
+    image: tajakobsen/h5p-moodle:3.2.1
+    links:
+     - "database"
+    ports:
+     - "8080:80"
+    environment:
+      MOODLE_URL: 'http://localhost:8080'
+      DB_PORT_3306_TCP_ADDR: 'database'
+      DB_ENV_MYSQL_DATABASE: "moodle"
+      DB_ENV_MYSQL_USER: "moodle"
+      DB_ENV_MYSQL_PASSWORD: "moodle"
+    volumes:
+      - "../../h5p-moodle-plugin:/var/www/html/mod/hvp"
+  database:
+    container_name: h5p-moodle-mysql-3.2
+    image: mysql:latest
+    environment:
+      MYSQL_DATABASE: "moodle"
+      MYSQL_ROOT_PASSWORD: "moodle"
+      MYSQL_USER: "moodle"
+      MYSQL_PASSWORD: "moodle"
+    expose:
+     - "3306"
+    ports:
+     - "3306:3306"
+    volumes:
+     - "./mysql:/var/lib/mysql"

@@ -7,15 +7,18 @@ services:
     links:
      - "database"
     ports:
-     - "8080:80"
+     - "80:80"
     environment:
-      MOODLE_URL: 'http://localhost:8080'
-      DB_PORT_3306_TCP_ADDR: 'database'
-      DB_ENV_MYSQL_DATABASE: "moodle"
-      DB_ENV_MYSQL_USER: "moodle"
-      DB_ENV_MYSQL_PASSWORD: "moodle"
+      MOODLE_URL: 'http://localhost'
+      MYSQL_HOST: 'database'
+      MYSQL_DATABASE: "moodle"
+      MYSQL_USER: "moodle"
+      MYSQL_PASSWORD: "moodle"
     volumes:
+      - "./php.ini:/etc/php/7.0/apache2/conf.d/30-moodle_php.ini"
       - "../../h5p-moodle-plugin:/var/www/html/mod/hvp"
+      - "./moodle-config.php:/var/www/html/config.php"
+      - "./theme/h5pmods-moodle:/var/www/html/theme/superclean"
   database:
     container_name: h5p-moodle-mysql-3.2
     image: mysql:latest
@@ -29,4 +32,4 @@ services:
     ports:
      - "3306:3306"
     volumes:
-     - "./mysql:/var/lib/mysql"
+     - "./data/mysql:/var/lib/mysql"

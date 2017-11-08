@@ -1,12 +1,18 @@
-# Docker compose file for h5p running in Moodle
+# Docker compose file for running a plugin in Moodle
 
 ## Running
 
-1. Install [Docker Engine](https://docs.docker.com/engine/installation/) and [Docker Compose](https://docs.docker.com/compose/install/).
-2. Clone this repository, and clone the [h5p moodle plugin](https://github.com/h5p/h5p-moodle-plugin) repository.
-3. Edit [docker-compose.yml](https://github.com/tajakobsen/docker-compose-h5p-moodle/blob/131d7e302a34ddb13c79ac3fcc63a093684118b5/docker-compose.yml#L18) so that the volume points to the _moodle plugin_
+1. Install [Docker Toolbox](https://www.docker.com/products/docker-toolbox).
+2. Clone this repository.
+3. Edit [docker-compose.yml](https://github.com/MoodleFreak/docker-compose-moodle/blob/131d7e302a34ddb13c79ac3fcc63a093684118b5/docker-compose.yml#L18) so that the volume points to the _moodle plugin_
 4. Run with [docker-compose](https://docs.docker.com/compose/)
 
 ```bash
 docker-compose up
 ```
+
+
+## Inspiration
+
+laradock (https://github.com/laradock/laradock)
+docker-compose-h5p-moodle (https://github.com/tajakobsen/docker-compose-h5p-moodle)

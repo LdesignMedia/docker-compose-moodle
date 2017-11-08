@@ -2,8 +2,8 @@ version: '2'
 
 services:
   moodle:
-    container_name: h5p-moodle-3.2
-    image: tajakobsen/h5p-moodle:3.2.1
+    container_name: moodle-3.2
+    image: moodlefreak/moodle:3.2.1
     links:
      - "database"
     ports:
@@ -15,9 +15,9 @@ services:
       DB_ENV_MYSQL_USER: "moodle"
       DB_ENV_MYSQL_PASSWORD: "moodle"
     volumes:
-      - "../../h5p-moodle-plugin:/var/www/html/mod/hvp"
+      - ".:/var/www/html/blocks/sample"
   database:
-    container_name: h5p-moodle-mysql-3.2
+    container_name: moodle-mysql-3.2
     image: mysql:latest
     environment:
       MYSQL_DATABASE: "moodle"

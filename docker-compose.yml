@@ -3,30 +3,17 @@ version: '2'
 services:
   moodle:
     container_name: moodle-3.2
-    image: moodlefreak/moodle:3.2.1
+    image: moodlefreak/moodle:latest
     links:
-     - "database"
+     - database
     ports:
      - "8080:80"
     environment:
       MOODLE_URL: 'http://localhost:8080'
-      DB_PORT_3306_TCP_ADDR: 'database'
-      DB_ENV_MYSQL_DATABASE: "moodle"
-      DB_ENV_MYSQL_USER: "moodle"
-      DB_ENV_MYSQL_PASSWORD: "moodle"
+      MOODLE_DIVERTALLEMAILSTO: 'debug@domain.com'
+      DB_PORT_3306_TCP_ADDR: database
+      DB_ENV_MYSQL_DATABASE: moodle
+      DB_ENV_MYSQL_USER: moodle
+      DB_ENV_MYSQL_PASSWORD: moodle
     volumes:
       - ".:/var/www/html/blocks/sample"
-  database:
-    container_name: moodle-mysql-3.2
-    image: mysql:latest
-    environment:
-      MYSQL_DATABASE: "moodle"
-      MYSQL_ROOT_PASSWORD: "moodle"
-      MYSQL_USER: "moodle"
-      MYSQL_PASSWORD: "moodle"
-    expose:
-     - "3306"
-    ports:
-     - "3306:3306"
-    volumes:
-     - "./mysql:/var/lib/mysql"
